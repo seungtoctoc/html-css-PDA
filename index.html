@@ -54,21 +54,27 @@
     <b>Practice7 : form - text field</b><br>
     <form>
         <label for="fname">Name:</label><br>
-        <input type="text" id="fname" name="fname"><br><br>
+        <input type="text" id="fname" name="fname">
+        <input type="button" value="Submit" onclick="submitName()">
     </form>
-
-
     <br>
+    <div id="nameResult"></div>
+
+
+    <br><br>
     <b>Practice8 : form - checkboxes</b><br>
-    <form>
+    <form id="bankForm">
         <input type="checkbox" id="bank1" name="bank1" value="shinhan">
         <label for="bank1"> shinhan</label><br>
         <input type="checkbox" id="bank2" name="bank2" value="hana">
         <label for="bank2"> hana</label><br>
         <input type="checkbox" id="bank3" name="bank3" value="kookmin">
         <label for="bank3"> kookmin</label>
+        <br>
+        <input type="button" value="Submit" onclick="submitBank()">
     </form>
-
+    <br>
+    <div id="bankResult"></div>
 
     <br><br>
     <b>Practice9 : canvas</b><br>
@@ -83,7 +89,28 @@
     <img src="gatsby.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="160" height="90"></div>
     <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
       
+
     <script>
+        function submitName() {
+            var name = document.getElementById("fname").value;
+            var resultElement = document.getElementById("nameResult");
+
+            resultElement.innerHTML = name + "님 안녕하세요";
+        }
+
+        function submitBank() {
+            var form = document.getElementById("bankForm");
+    
+            var selectedBanks = [];
+            var checkboxes = form.querySelectorAll('input[type="checkbox"]:checked');
+            for (var i = 0; i < checkboxes.length; i++) {
+                selectedBanks.push(checkboxes[i].value);
+            }
+    
+            var outputDiv = document.getElementById("bankResult");
+            outputDiv.innerHTML = selectedBanks.join(', ') + " 은행을 선택하셨습니다."
+        }
+
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
         ctx.font = "30px Arial";

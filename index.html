@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML/CSS</title>
+    <style>
+        #div1, #div2 {
+            float: left;
+            width: 160px;
+            height: 90px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
     <h1>Start NOW!!!</h1>
@@ -66,12 +76,45 @@
     </canvas>
 
 
-
+    <br><br><br>
+    <b>Practice10 : drag and drop</b><br>
+    <p>Drag the image back and forth between the two div elements.</p>
+    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <img src="gatsby.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="160" height="90"></div>
+    <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      
     <script>
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
         ctx.font = "30px Arial";
         ctx.strokeText("Canvas Test", 10, 50);
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }
     </script>
 </body>
 </html>
